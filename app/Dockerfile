@@ -34,3 +34,4 @@ EXPOSE 3000
 
 # Serve the build
 CMD ["serve", "-s", "build"]
+# CI test trigger
