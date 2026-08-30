@@ -19,4 +19,3 @@ variable "memory_threshold" {
   type    = number
   default = 80
 }
-

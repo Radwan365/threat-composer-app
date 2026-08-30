@@ -29,3 +29,14 @@ variable "container_app_principal_id" {
   description = "Principal ID of the container app's managed identity for Key Vault access"
 }
 
+variable "app_secret_name" {
+  type        = string
+  description = "Name of the secret stored in Key Vault"
+  default     = "app-secret"
+}
+
+variable "app_secret_value" {
+  type        = string
+  description = "Value of the secret stored in Key Vault"
+  sensitive   = true
+}
