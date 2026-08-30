@@ -1,5 +1,4 @@
 resource_group_name = "rg-threat-composer"
-location            = "eastus"
 
 acr_name = "acrthreatcomposerradwan2026"
 acr_sku  = "Basic"

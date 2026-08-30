@@ -2,11 +2,6 @@ variable "resource_group_name" {
   type = string
 }
 
-variable "location" {
-  type    = string
-  default = "eastus"
-}
-
 variable "tags" {
   type    = map(string)
   default = {}
@@ -110,4 +105,3 @@ variable "domain_name" {
 variable "subdomain" {
   type = string
 }
-# test
