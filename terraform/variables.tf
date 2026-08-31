@@ -2,11 +2,6 @@ variable "resource_group_name" {
   type = string
 }
 
-variable "location" {
-  type    = string
-  default = "eastus"
-}
-
 variable "tags" {
   type    = map(string)
   default = {}
@@ -109,4 +104,19 @@ variable "domain_name" {
 
 variable "subdomain" {
   type = string
+}
+
+variable "app_secret_expiration_date" {
+  type    = string
+  default = "2027-08-30T00:00:00Z"
+}
+
+variable "local_deployer_object_id" {
+  type        = string
+  description = "Object ID of the local user running Terraform manually"
+}
+
+variable "ci_deployer_object_id" {
+  type        = string
+  description = "Object ID of the CI/CD service principal running Terraform in GitHub Actions"
 }

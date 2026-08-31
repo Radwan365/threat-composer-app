@@ -1,5 +1,4 @@
 resource_group_name = "rg-threat-composer"
-location            = "eastus"
 
 acr_name = "acrthreatcomposerradwan2026"
 acr_sku  = "Basic"
@@ -25,5 +24,7 @@ metric_alert_name = "threat-composer-alerts"
 cpu_threshold     = 80
 memory_threshold  = 80
 
-domain_name = "theradwan.com"
-subdomain   = "app"
+domain_name              = "theradwan.com"
+subdomain                = "app"
+local_deployer_object_id = "bd225c40-8669-4429-8bd9-383041309a74"
+ci_deployer_object_id    = "c58b95e0-13cd-4eb9-a658-3e78d2f1accf"

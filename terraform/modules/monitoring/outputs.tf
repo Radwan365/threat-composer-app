@@ -1,9 +1,7 @@
-output "log_analytics_workspace_id" {
-  description = "The ID of the Log Analytics workspace."
-  value       = azurerm_log_analytics_workspace.this.id
+output "cpu_alert_id" {
+  value = azurerm_monitor_metric_alert.cpu_alert.id
 }
 
-output "log_analytics_workspace_name" {
-  description = "The name of the Log Analytics workspace."
-  value       = azurerm_log_analytics_workspace.this.name
+output "memory_alert_id" {
+  value = azurerm_monitor_metric_alert.memory_alert.id
 }

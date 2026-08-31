@@ -29,3 +29,28 @@ variable "container_app_principal_id" {
   description = "Principal ID of the container app's managed identity for Key Vault access"
 }
 
+variable "app_secret_name" {
+  type        = string
+  description = "Name of the secret stored in Key Vault"
+  default     = "app-secret"
+}
+
+variable "app_secret_value" {
+  type        = string
+  description = "Value of the secret stored in Key Vault"
+  sensitive   = true
+}
+
+variable "app_secret_expiration_date" {
+  type = string
+}
+
+variable "local_deployer_object_id" {
+  type        = string
+  description = "Object ID of the local user running Terraform manually"
+}
+
+variable "ci_deployer_object_id" {
+  type        = string
+  description = "Object ID of the CI/CD service principal running Terraform in GitHub Actions"
+}
