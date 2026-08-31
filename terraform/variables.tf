@@ -105,3 +105,8 @@ variable "domain_name" {
 variable "subdomain" {
   type = string
 }
+
+variable "app_secret_expiration_date" {
+  type    = string
+  default = "2027-08-30T00:00:00Z"
+}
