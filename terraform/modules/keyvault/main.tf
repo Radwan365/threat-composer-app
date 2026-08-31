@@ -1,9 +1,9 @@
-#checkov:skip=CKV_AZURE_189:No VNet in v1 architecture; public access required until private endpoints are added
-#checkov:skip=CKV_AZURE_109:No VNet in v1 architecture; GitHub-hosted runner IPs are not fixed/allowlist-able
-#checkov:skip=CKV2_AZURE_32:No VNet in v1 architecture; private endpoint deferred to v2
-#checkov:skip=CKV_AZURE_42:Purge protection is irreversible and conflicts with this project's active destroy/rebuild cycle
-#checkov:skip=CKV_AZURE_110:Purge protection is irreversible and conflicts with this project's active destroy/rebuild cycle
 resource "azurerm_key_vault" "key_vault" {
+  #checkov:skip=CKV_AZURE_189:No VNet in v1 architecture; public access required until private endpoints are added
+  #checkov:skip=CKV_AZURE_109:No VNet in v1 architecture; GitHub-hosted runner IPs are not fixed/allowlist-able
+  #checkov:skip=CKV2_AZURE_32:No VNet in v1 architecture; private endpoint deferred to v2
+  #checkov:skip=CKV_AZURE_42:Purge protection is irreversible and conflicts with this project's active destroy/rebuild cycle
+  #checkov:skip=CKV_AZURE_110:Purge protection is irreversible and conflicts with this project's active destroy/rebuild cycle
   name                       = var.key_vault_name
   location                   = var.location
   resource_group_name        = var.resource_group_name
