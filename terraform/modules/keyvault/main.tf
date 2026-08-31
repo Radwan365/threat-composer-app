@@ -18,12 +18,16 @@ resource "azurerm_role_assignment" "container_app_secrets_access" {
   principal_id         = var.container_app_principal_id
 }
 
-data "azurerm_client_config" "current" {}
-
-resource "azurerm_role_assignment" "deployer_secrets_officer" {
+resource "azurerm_role_assignment" "deployer_secrets_officer_local" {
   scope                = azurerm_key_vault.key_vault.id
   role_definition_name = "Key Vault Secrets Officer"
-  principal_id         = data.azurerm_client_config.current.object_id
+  principal_id         = var.local_deployer_object_id
+}
+
+resource "azurerm_role_assignment" "deployer_secrets_officer_ci" {
+  scope                = azurerm_key_vault.key_vault.id
+  role_definition_name = "Key Vault Secrets Officer"
+  principal_id         = var.ci_deployer_object_id
 }
 
 resource "azurerm_key_vault_secret" "app_secret" {
@@ -33,5 +37,8 @@ resource "azurerm_key_vault_secret" "app_secret" {
   content_type    = "application-secret"
   expiration_date = var.app_secret_expiration_date
 
-  depends_on = [azurerm_role_assignment.deployer_secrets_officer]
+  depends_on = [
+    azurerm_role_assignment.deployer_secrets_officer_local,
+    azurerm_role_assignment.deployer_secrets_officer_ci
+  ]
 }

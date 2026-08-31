@@ -45,6 +45,8 @@ module "keyvault" {
   container_app_principal_id = module.container_apps.managed_identity_principal_id
   app_secret_value           = var.app_secret_value
   app_secret_expiration_date = var.app_secret_expiration_date
+  local_deployer_object_id   = var.local_deployer_object_id
+  ci_deployer_object_id      = var.ci_deployer_object_id
 }
 
 module "monitoring" {
