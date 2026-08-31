@@ -44,6 +44,7 @@ module "keyvault" {
   tenant_id                  = data.azurerm_client_config.current.tenant_id
   container_app_principal_id = module.container_apps.managed_identity_principal_id
   app_secret_value           = var.app_secret_value
+  app_secret_expiration_date = var.app_secret_expiration_date
 }
 
 module "monitoring" {

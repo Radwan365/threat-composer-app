@@ -40,3 +40,7 @@ variable "app_secret_value" {
   description = "Value of the secret stored in Key Vault"
   sensitive   = true
 }
+
+variable "app_secret_expiration_date" {
+  type = string
+}

@@ -1,3 +1,8 @@
+#checkov:skip=CKV_AZURE_189:No VNet in v1 architecture; public access required until private endpoints are added
+#checkov:skip=CKV_AZURE_109:No VNet in v1 architecture; GitHub-hosted runner IPs are not fixed/allowlist-able
+#checkov:skip=CKV2_AZURE_32:No VNet in v1 architecture; private endpoint deferred to v2
+#checkov:skip=CKV_AZURE_42:Purge protection is irreversible and conflicts with this project's active destroy/rebuild cycle
+#checkov:skip=CKV_AZURE_110:Purge protection is irreversible and conflicts with this project's active destroy/rebuild cycle
 resource "azurerm_key_vault" "key_vault" {
   name                       = var.key_vault_name
   location                   = var.location
@@ -22,9 +27,11 @@ resource "azurerm_role_assignment" "deployer_secrets_officer" {
 }
 
 resource "azurerm_key_vault_secret" "app_secret" {
-  name         = var.app_secret_name
-  value        = var.app_secret_value
-  key_vault_id = azurerm_key_vault.key_vault.id
+  name            = var.app_secret_name
+  value           = var.app_secret_value
+  key_vault_id    = azurerm_key_vault.key_vault.id
+  content_type    = "application-secret"
+  expiration_date = var.app_secret_expiration_date
 
   depends_on = [azurerm_role_assignment.deployer_secrets_officer]
 }
