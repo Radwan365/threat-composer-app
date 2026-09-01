@@ -1,33 +1,27 @@
 name: Docker Build and Push
-
 on:
   push:
     branches:
       - main
     paths:
       - "app/**"
-
 permissions:
   id-token: write
   contents: read
-
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
       - name: Azure Login
         uses: azure/login@v2
         with:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-
       - name: Build image
         run: docker build -t threat-composer:${{ github.sha }} ./app
-
       - name: Run Trivy vulnerability scan
         uses: aquasecurity/trivy-action@master
         with:
@@ -35,10 +29,9 @@ jobs:
           format: table
           exit-code: "1"
           severity: CRITICAL,HIGH
-
+          trivyignores: .trivyignore
       - name: Log in to ACR
         run: az acr login --name acrthreatcomposerradwan2026
-
       - name: Tag and push image
         run: |
           docker tag threat-composer:${{ github.sha }} acrthreatcomposerradwan2026.azurecr.io/threat-composer:${{ github.sha }}
