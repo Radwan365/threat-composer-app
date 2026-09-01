@@ -10,7 +10,7 @@ managed_identity_name          = "threat-composer-identity"
 
 image_name  = "threat-composer"
 image_tag   = "latest"
-target_port = 3000
+target_port = 80
 
 cpu          = 0.25
 memory       = "0.5Gi"
